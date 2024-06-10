@@ -5,22 +5,40 @@
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/8.1.1/samples
  */
 
- 
- apply plugin: 'java'
+ plugins{
+ 	id 'java'
+ 	id 'application'
+	id "org.sonarqube" version "4.4.1.3373"
+}
+
+repositories {
+    mavenCentral() 
+}
+
+
+application{
+	mainClass='com.example.Fibonacci'
+}
  
  jar {
     archiveBaseName = 'fibonacci'
     archiveVersion =  '0.1.0'
 }
 
-plugins {
-  id "org.sonarqube" version "4.4.1.3373"
+
+
+sonar{
+	properties{
+		property "sonar.projectKey", "giorgiafrancazi_Fibonacci"
+		property "sonar.organization", "giorgiafrancazi"
+		property "sonar.host.url", "https://sonarcloud.io"
+	
+	}
 }
 
-sonar {
-  properties {
-    property "sonar.projectKey", "giorgiafrancazi_Fibonacci"
-    property "sonar.organization", "giorgiafrancazi"
-    property "sonar.host.url", "https://sonarcloud.io"
-  }
-}
+
+/*dependencies {
+
+    implementation 'com.google.guava:guava:31.1-jre' 
+    testImplementation 'junit:junit:4.13.2'
+}*/
